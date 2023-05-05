@@ -1,6 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from TDA2 import Grafo 
+from TDA2 import Grafo
 
 # Crear un grafo y agregar algunos nodos y aristas
 g = Grafo()

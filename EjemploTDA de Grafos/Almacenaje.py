@@ -13,12 +13,6 @@ g.agregar_arista('Recepción', 'Almacenamiento', 2)
 g.agregar_arista('Almacenamiento', 'Control de inventario', 3)
 g.agregar_arista('Control de inventario', 'Preparación de pedidos', 5)
 g.agregar_arista('Preparación de pedidos', 'Despacho', 4)
-g.agregar_arista('Recepción', 'Control de inventario', 6)
-g.agregar_arista('Recepción', 'Preparación de pedidos', 7)
-g.agregar_arista('Recepción', 'Despacho', 9)
-g.agregar_arista('Almacenamiento', 'Preparación de pedidos', 8)
-g.agregar_arista('Almacenamiento', 'Despacho', 10)
-g.agregar_arista('Control de inventario', 'Despacho', 11)
 
 # Creando grafo con la librería para graficar
 g_nx = nx.Graph()
