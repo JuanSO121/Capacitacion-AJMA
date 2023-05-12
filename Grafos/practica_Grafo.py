@@ -15,6 +15,7 @@ G.add_edge(2, 4, weight=1)
 G.add_edge(3, 4, weight=5)
 G.add_edge(4, 5, weight=6)
 
+
 # Definimos una función para mostrar el grafo
 def mostrar_grafo():
     pos = nx.spring_layout(G)
