@@ -1,5 +1,5 @@
 from Explicacion import explicacion
-from Practica import practica
+from practica_Grafo import practica
 
 def menu():
     while True:
