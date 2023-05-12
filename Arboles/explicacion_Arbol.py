@@ -1,17 +1,7 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-from TDA_Arbol import Arbol, Nodo, dfs_preorden, mostrar_arbol
+from TDA_Arbol import Arbol, Nodo, dfs_preorden, mostrar_arbol,mostrar_arbol_con_networkx
 
-def mostrar_arbol_con_networkx(arbol):
-    G = nx.DiGraph()
-    for nodo in dfs_preorden(arbol.raiz):
-        G.add_node(nodo.valor)
-        if nodo.padre is not None:
-            G.add_edge(nodo.padre.valor, nodo.valor)
-    pos = nx.spring_layout(G)
-    nx.draw_networkx(G, pos, with_labels=True, arrows=True)
-    plt.show()
-    
 # Creamos el árbol
 raiz = Nodo("raiz")
 nodo1 = Nodo("nodo1")
@@ -111,4 +101,3 @@ def explicacion():
         else:
             print("Opción inválida, por favor selecciona otra.")
 
-explicacion()

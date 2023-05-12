@@ -1,3 +1,6 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
 class Nodo:
     def __init__(self, valor):
         self.valor = valor
@@ -49,3 +52,13 @@ def mostrar_arbol(arbol):
             mostrar_nodo(hijo, nivel+1)
    
     mostrar_nodo(arbol.raiz, 0)
+
+def mostrar_arbol_con_networkx(arbol):
+    G = nx.DiGraph()
+    for nodo in dfs_preorden(arbol.raiz):
+        G.add_node(nodo.valor)
+        if nodo.padre is not None:
+            G.add_edge(nodo.padre.valor, nodo.valor)
+    pos = nx.spring_layout(G)
+    nx.draw_networkx(G, pos, with_labels=True, arrows=True)
+    plt.show()

@@ -1,8 +1,8 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from TDA_Arbol import Arbol, Nodo,dfs_preorden,mostrar_arbol
+from TDA_Arbol import Arbol, Nodo,dfs_preorden,mostrar_arbol,mostrar_arbol_con_networkx
 
-def mostrar_menu():
+def practica():
     print("¡Bienvenido al programa de árboles!")
     print("Este programa te permitirá conocer las partes de un árbol.")
     print("Por favor, sigue las instrucciones y utiliza las opciones del menú para interactuar con el programa.")
@@ -43,14 +43,7 @@ def mostrar_menu():
             else:
                 print("Nodo no encontrado")
         elif opcion == "4":
-            G = nx.DiGraph()
-            for nodo in dfs_preorden(arbol.raiz):
-                G.add_node(nodo.valor)
-                if nodo.padre is not None:
-                    G.add_edge(nodo.padre.valor, nodo.valor)
-            pos = nx.spring_layout(G)
-            nx.draw_networkx(G, pos, with_labels=True, arrows=True)
-            plt.show()
+            mostrar_arbol_con_networkx(arbol)
         elif opcion == "5":
             mostrar_arbol(arbol)
         elif opcion == "6":
@@ -58,5 +51,3 @@ def mostrar_menu():
             break
         else:
             print("Opción inválida. Por favor, elige una opción válida.")
-            
-mostrar_menu()
