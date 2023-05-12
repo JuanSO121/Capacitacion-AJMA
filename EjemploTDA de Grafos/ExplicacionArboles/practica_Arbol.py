@@ -1,20 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from TDA_Arbol import Arbol, Nodo
-
-def dfs_preorden(nodo):
-    visitados = [nodo]
-    for hijo in nodo.hijos:
-        visitados.extend(dfs_preorden(hijo))
-    return visitados
-
-def mostrar_arbol(arbol):
-    def mostrar_nodo(nodo, nivel):
-        print("  "*nivel + f"{nodo.valor}")
-        for hijo in nodo.hijos:
-            mostrar_nodo(hijo, nivel+1)
-   
-    mostrar_nodo(arbol.raiz, 0)
+from TDA_Arbol import Arbol, Nodo,dfs_preorden,mostrar_arbol
 
 def mostrar_menu():
     print("¡Bienvenido al programa de árboles!")

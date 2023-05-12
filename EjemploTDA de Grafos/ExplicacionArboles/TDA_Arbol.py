@@ -35,3 +35,17 @@ class Arbol:
             self.raiz = None
         else:
             nodo.padre.hijos.remove(nodo)
+            
+def dfs_preorden(nodo):
+    visitados = [nodo]
+    for hijo in nodo.hijos:
+        visitados.extend(dfs_preorden(hijo))
+    return visitados
+
+def mostrar_arbol(arbol):
+    def mostrar_nodo(nodo, nivel):
+        print("  "*nivel + f"{nodo.valor}")
+        for hijo in nodo.hijos:
+            mostrar_nodo(hijo, nivel+1)
+   
+    mostrar_nodo(arbol.raiz, 0)

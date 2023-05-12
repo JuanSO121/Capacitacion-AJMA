@@ -1,21 +1,33 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+from TDA_Arbol import Arbol, Nodo, dfs_preorden, mostrar_arbol
 
-# Creamos un grafo vacío
-G = nx.DiGraph()
+def mostrar_arbol_con_networkx(arbol):
+    G = nx.DiGraph()
+    for nodo in dfs_preorden(arbol.raiz):
+        G.add_node(nodo.valor)
+        if nodo.padre is not None:
+            G.add_edge(nodo.padre.valor, nodo.valor)
+    pos = nx.spring_layout(G)
+    nx.draw_networkx(G, pos, with_labels=True, arrows=True)
+    plt.show()
+    
+# Creamos el árbol
+raiz = Nodo("raiz")
+nodo1 = Nodo("nodo1")
+nodo2 = Nodo("nodo2")
+nodo3 = Nodo("nodo3")
+nodo4 = Nodo("nodo4")
+nodo5 = Nodo("nodo5")
 
-# Agregamos nodos al grafo
-G.add_node(1, label="Nodo 1")
-G.add_node(2, label="Nodo 2")
-G.add_node(3, label="Nodo 3")
-
-# Agregamos aristas (también llamadas "vértices") al grafo
-G.add_edge(1, 2, label="Arista 1-2")
-G.add_edge(2, 3, label="Arista 2-3")
-
-# Asignamos pesos a las aristas
-G[1][2]['weight'] = 0.5
-G[2][3]['weight'] = 1.2
+arbol = Arbol(raiz)
+arbol.agregar_nodo("nodo1", arbol.raiz)
+arbol.agregar_nodo("nodo2", arbol.raiz)
+padre = arbol.buscar_nodo("nodo1")
+arbol.agregar_nodo("nodo3", padre)
+arbol.agregar_nodo("nodo4", padre)
+padre = arbol.buscar_nodo("nodo2")
+arbol.agregar_nodo("nodo5", padre)
 
 # Creamos el menú
 menu = {
@@ -30,28 +42,28 @@ menu = {
     "9": "Mostrar árbol",
     "0": "Salir"
 }
+
 # Funciónes que definen y muestran cada parte de un arbol
 def Def_Arbol():
     print ("\nEs una estructura jerárquica compuesta por nodos y aristas, donde cada nodo tiene un nodo padre y cero o más nodos hijos.")
     print ("Se utilizan ampliamente en ciencias de la computación y programación debido a su capacidad para representar estructuras jerárquicas y relaciones entre elementos.")
 
 def mostrar_nodo():
-    print("\nUn nodo es un elemento en un árbol, es decir una entidad que contiene información y está conectada a otros nodos, formando así la estructura jerárquica del árbol.", G.nodes())
+    print("\nUn nodo es un elemento en un árbol, es decir una entidad que contiene información y está conectada a otros nodos, formando así la estructura jerárquica del árbol.")
 
 def mostrar_raiz():
     print("\nEs el nodo principal y el nivel superior del árbol. Es el único nodo que no tiene un nodo padre y sirve como punto de partida para acceder a todos los demás nodos del árbol.")
 
 def mostrar_hoja():
-    hojas = [nodo for nodo in G.nodes() if G.out_degree(nodo) == 0]
-    print("\nUna hoja en un árbol es un nodo final o terminal que no tiene hijos ni ramificaciones adicionales, en este arbol las hojas son:", hojas)
+    
+    print("\nUna hoja en un árbol es un nodo final o terminal que no tiene hijos ni ramificaciones adicionales, en este arbol las hojas son:")
 
 def mostrar_padre():
-    padres = [nodo for nodo in G.nodes() if G.in_degree(nodo) > 0]
-    print("\nUn padre es un nodo en un árbol que tiene al menos un hijo. En este árbol los padres son:", padres)
+    print("\nUn padre es un nodo en un árbol que tiene al menos un hijo. En este árbol los padres son:")
 
 def mostrar_hijo():
-    hijos = [nodo for nodo in G.nodes() if G.out_degree(nodo) > 0]
-    print("\nUn hijo en un árbol es un nodo cuya escala jerarquica es inferior al nodo que está conectado directamente, el cual se llama nodo padre, en este arbol los hijos son:", hijos)
+    
+    print("\nUn hijo en un árbol es un nodo cuya escala jerarquica es inferior al nodo que está conectado directamente, el cual se llama nodo padre, en este arbol los hijos son:")
 
 def mostrar_rama():
     print("\nuna rama en un árbol es un camino o secuencia de nodos que se extiende desde un nodo padre hasta uno de sus nodos hijos.")
@@ -60,39 +72,6 @@ def mostrar_rama():
 def mostrar_subarbol():
     print("\nUn subárbol es una porción de un árbol más grande que se deriva de un nodo raíz específico y que incluye a ese nodo y a todos sus descendientes.")
     print("Es decir que son los posibles caminos a recorrer en un arbol a partir de un punto de partida y destino especificado.")
-
-# Función para mostrar el árbol
-def mostrar_arbol():
-    # Dibujamos el árbol
-    pos = nx.spring_layout(G, seed=42)
-
-    # Colores de los nodos, aristas y peso
-    node_color = 'lightblue'
-    edge_color = 'black'
-    weight_color = 'red'
-    node_label_color = 'white'
-    edge_label_color = 'black'
-
-    # Dibujamos los nodos
-    nx.draw_networkx_nodes(G, pos, node_color=node_color, node_size=500, label="Nodos")
-
-    # Dibujamos las aristas
-    nx.draw_networkx_edges(G, pos, edge_color=edge_color, width=2, alpha=0.7, label="Aristas")
-
-    # Etiquetas de los nodos
-    node_labels = {node: G.nodes[node]['label'] for node in G.nodes()}
-    nx.draw_networkx_labels(G, pos, labels=node_labels, font_size=14, font_color=node_label_color)
-
-    # Etiquetas de las aristas con los pesos
-    edge_labels = {(u, v): G[u][v]['weight'] for u, v in G.edges() if 'weight' in G[u][v]}
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, label_pos=0.5, font_size=12, font_color=edge_label_color)
-
-    # Legendas
-    plt.legend(loc='upper center', bbox_to_anchor=(0.5, 1.15), ncol=2)
-
-    # Mostramos el árbol
-    plt.axis('off')
-    plt.show()
 
 # Funcion del menú
 def explicacion():
@@ -124,7 +103,7 @@ def explicacion():
         elif opcion == "8":
             mostrar_subarbol()
         elif opcion == "9":
-            mostrar_arbol()
+            mostrar_arbol_con_networkx(arbol)
         elif opcion == "0":
             print("¡Hasta luego!")
             break
