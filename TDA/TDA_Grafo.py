@@ -219,11 +219,18 @@ def barrido_amplitud(grafo, vertice):
                     adyacentes = adyacentes.sig 
         vertice = vertice.sig
 
-# def dijkstra(grafo, origen, destino):
-#     # hallar el camino mas corto
-#     no_visitados = Heap(tamano(grafo))
-#     camino = Pila()
-#     aux = grafo.inicio
+def dijkstra(grafo, origen, destino):
+    # hallar el camino mas corto
+    no_visitados = Heap(tamano(grafo))
+    camino = Pila()
+    aux = grafo.inicio
+    while(aux is not None):
+        if(aux.info == origen):
+            arribo_h(no_visitados, [aux, None], 0)
+        else:
+            arribo_h(no_visitados, [aux,None], inf)
+            
+            
 
 # def kruskal(grafo):
 #     # hallar el arbol de expancion minimo
