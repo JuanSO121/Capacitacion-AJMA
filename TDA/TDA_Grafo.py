@@ -219,17 +219,29 @@ def barrido_amplitud(grafo, vertice):
                     adyacentes = adyacentes.sig 
         vertice = vertice.sig
 
-def dijkstra(grafo, origen, destino):
-    # hallar el camino mas corto
-    no_visitados = Heap(tamano(grafo))
-    camino = Pila()
-    aux = grafo.inicio
-    while(aux is not None):
-        if(aux.info == origen):
-            arribo_h(no_visitados, [aux, None], 0)
-        else:
-            arribo_h(no_visitados, [aux,None], inf)
-            
+# def dijkstra(grafo, origen, destino):
+#     # hallar el camino mas corto
+#     no_visitados = Heap(tamano(grafo))
+#     camino = Pila()
+#     aux = grafo.inicio
+#     while(aux is not None):
+#         if(aux.info == origen):
+#             arribo_h(no_visitados, [aux, None], 0)
+#         else:
+#             arribo_h(no_visitados, [aux,None], inf)
+#         aux = aux.sig
+        
+#     while(not heap_vacio(no_visitados)):
+#         dato = atencion_h(no_visitados)
+#         apilar(camino,dato)
+#         aux = dato[1][0].adyacentes.inicio
+#         while(aux is not None):
+#             pos= buscar_h(no_visitados, aux.destino)
+#             if(no_visitados.vector[pos][0]>dato[0]+aux.info):
+#                 no_visitados.vector[pos][1][1] = dato[1][0].info
+#                 cambiar_prioridad(no_visitados,pos,dato[0]+aux.info)
+#             aux = aux.sig
+#     return camino
             
 
 # def kruskal(grafo):

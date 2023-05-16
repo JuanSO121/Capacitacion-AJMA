@@ -15,7 +15,7 @@ def practica():
         print("3. Buscar nodo")
         print("4. Visualizar árbol")
         print("5. Mostrar partes del árbol")
-        print("6. Salir")
+        print("6. Volver al menu Principal")
         opcion = input("Ingrese una opción: ")
         if opcion == "1":
             valor = input("Ingrese el valor del nodo: ")

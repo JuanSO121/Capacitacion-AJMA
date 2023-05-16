@@ -30,7 +30,7 @@ menu = {
     "7": "¿Qué es una rama?",
     "8": "¿Qué es un subárbol?",
     "9": "Mostrar árbol",
-    "0": "Salir"
+    "0": "Volver al menu Principal"
 }
 
 # Funciónes que definen y muestran cada parte de un arbol
@@ -56,7 +56,7 @@ def mostrar_hijo():
     print("\nUn hijo en un árbol es un nodo cuya escala jerarquica es inferior al nodo que está conectado directamente, el cual se llama nodo padre, en este arbol los hijos son:")
 
 def mostrar_rama():
-    print("\nuna rama en un árbol es un camino o secuencia de nodos que se extiende desde un nodo padre hasta uno de sus nodos hijos.")
+    print("\nUna rama en un árbol es un camino o secuencia de nodos que se extiende desde un nodo padre hasta uno de sus nodos hijos.")
     print("Representa una conexión jerárquica y proporciona una ruta para recorrer la estructura del árbol,"+"\n"+ "En este arbol las ramas son:")
     
 def mostrar_subarbol():
