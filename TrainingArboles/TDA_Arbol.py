@@ -1,6 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-
+import streamlit as st 
 class Nodo:
     def __init__(self, valor):
         self.valor = valor
@@ -53,12 +53,40 @@ def mostrar_arbol(arbol):
    
     mostrar_nodo(arbol.raiz, 0)
 
+# mostrar arbol ordenado con networkx
+def hierarchy_pos(G, root=None, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5):
+    pos = {}
+
+    def _hierarchy_pos(G, root, width=1., vert_gap=0.2, vert_loc=0, xcenter=0.5, pos=None, parent=None, parsed=[]):
+        if pos is None:
+            pos = {root: (xcenter, vert_loc)}
+        else:
+            pos[root] = (xcenter, vert_loc)
+        children = list(G.neighbors(root))
+        if not isinstance(G, nx.DiGraph) and parent is not None:
+            children.remove(parent)
+        if len(children) != 0:
+            dx = width / len(children)
+            nextx = xcenter - width / 2 - dx / 2
+            for child in children:
+                nextx += dx
+                pos = _hierarchy_pos(G, child, width=dx, vert_gap=vert_gap,
+                                     vert_loc=vert_loc - vert_gap, xcenter=nextx, pos=pos,
+                                     parent=root, parsed=parsed)
+        return pos
+
+    if root is None:
+        root = next(iter(G))
+    return _hierarchy_pos(G, root, width, vert_gap, vert_loc, xcenter)
+
 def mostrar_arbol_con_networkx(arbol):
     G = nx.DiGraph()
     for nodo in dfs_preorden(arbol.raiz):
         G.add_node(nodo.valor)
         if nodo.padre is not None:
             G.add_edge(nodo.padre.valor, nodo.valor)
-    pos = nx.spring_layout(G)
-    nx.draw_networkx(G, pos, with_labels=True, arrows=True)
-    plt.show()
+    pos = hierarchy_pos(G)
+    
+    fig, ax = plt.subplots()
+    nx.draw_networkx(G, pos, with_labels=True, arrows=True, ax=ax)
+    return fig
