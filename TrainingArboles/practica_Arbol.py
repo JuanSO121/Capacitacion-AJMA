@@ -1,53 +1,59 @@
+import streamlit as st
 import networkx as nx
 import matplotlib.pyplot as plt
-from TDA_Arbol import Arbol, Nodo,dfs_preorden,mostrar_arbol,mostrar_arbol_con_networkx
+from TDA_Arbol import Arbol, Nodo, dfs_preorden, mostrar_arbol, mostrar_arbol_con_networkx
+
+arbol = Arbol(Nodo("raiz"))
 
 def practica():
-    print("¡Bienvenido al programa de árboles!")
-    print("Este programa te permitirá conocer las partes de un árbol.")
-    print("Por favor, sigue las instrucciones y utiliza las opciones del menú para interactuar con el programa.")
-    arbol = Arbol(Nodo("raiz"))
+    st.title("Programa de Árboles")
+    st.write("Este programa te permitirá conocer las partes de un árbol.")
+    
+    opciones = {
+        "Agregar nodo": "1",
+        "Eliminar nodo": "2",
+        "Buscar nodo": "3",
+        "Visualizar árbol": "4",
+        "Mostrar partes del árbol": "5",
+    }
+    st.sidebar.title("Practica Arboles")
+    
     while True:
-        print()
-        print("-------- MENÚ ---------")
-        print("1. Agregar nodo")
-        print("2. Eliminar nodo")
-        print("3. Buscar nodo")
-        print("4. Visualizar árbol")
-        print("5. Mostrar partes del árbol")
-        print("6. Volver al menu Principal")
-        opcion = input("Ingrese una opción: ")
+        
+        descripcion_opciones = list(opciones.keys())
+        opcion_seleccionada = st.selectbox("Seleccione una opción:", descripcion_opciones, key="menu_opcion")
+
+        opcion = opciones[opcion_seleccionada]
+        
         if opcion == "1":
-            valor = input("Ingrese el valor del nodo: ")
-            padre_valor = input("Ingrese el valor del padre (o presione Enter si el nodo es la raíz): ")
-            if padre_valor == "":
+            valor = st.text_input("Ingrese el valor del nodo:", key="agregar_valor")
+            padre_valor = st.text_input("Ingrese el valor del padre (Inicial: raiz):", key="agregar_padre")
+            if padre_valor == "raiz":
                 arbol.agregar_nodo(valor, arbol.raiz)
             else:
                 padre = arbol.buscar_nodo(padre_valor)
                 if padre is not None:
                     arbol.agregar_nodo(valor, padre)
                 else:
-                    print("El nodo padre no existe")
+                    st.write("El nodo padre no existe")
+                    
         elif opcion == "2":
-            valor = input("Ingrese el valor del nodo a eliminar: ")
+            valor = st.text_input("Ingrese el valor del nodo a eliminar:", key="eliminar_valor")
             nodo = arbol.buscar_nodo(valor)
             if nodo is not None:
                 arbol.eliminar_nodo(nodo)
             else:
-                print("El nodo no existe")
+                st.write("El nodo no existe")
         elif opcion == "3":
-            valor = input("Ingrese el valor del nodo a buscar: ")
+            valor = st.text_input("Ingrese el valor del nodo a buscar:", key="buscar_valor")
             nodo = arbol.buscar_nodo(valor)
             if nodo is not None:
-                print("Nodo encontrado")
+                st.write("Nodo encontrado")
             else:
-                print("Nodo no encontrado")
+                st.write("Nodo no encontrado")
         elif opcion == "4":
-            mostrar_arbol_con_networkx(arbol)
+            fig = mostrar_arbol_con_networkx(arbol)
+            st.pyplot(fig)
         elif opcion == "5":
             mostrar_arbol(arbol)
-        elif opcion == "6":
-            print("¡Hasta luego!")
-            break
-        else:
-            print("Opción inválida. Por favor, elige una opción válida.")
+

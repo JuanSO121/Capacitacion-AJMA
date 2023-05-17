@@ -101,5 +101,3 @@ def explicacion():
         st.pyplot(fig)
     elif opcion == "0":
         st.write("¡Hasta luego!")
-
-explicacion()

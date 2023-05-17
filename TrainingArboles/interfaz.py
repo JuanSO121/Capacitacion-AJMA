@@ -1,5 +1,5 @@
 from explicacion_Arbol import explicacion
-
+from practica_Arbol import practica
 # streamlit run app.py
 import streamlit as st 
 import requests
@@ -18,6 +18,7 @@ def catgar_lottieurl(url):
 
 lottie_codigo = catgar_lottieurl("https://assets9.lottiefiles.com/packages/lf20_3rwasyjy.json")
 imagen_video = Image.open("src/eevee.jpg")
+
 def menu():
     st.title("Training Arboles")
     opciones = ["Inicio","Explicacion","Practica"]
@@ -25,8 +26,15 @@ def menu():
     if seleccion =="Explicacion":
         with st.container():
             st.subheader("Bienvenido al Training")
-            st.title("Introduccion sobre grafos")
+            st.title("Introduccion sobre Arboles")
             explicacion()
+            st.write("lo que sea")
+            st.write("[Mas informacion>](https://www.youtube.com/watch?v=zeS2FlxF_0s)")
+    elif seleccion =="Practica":
+        with st.container():
+            
+            st.title("Practica tus saberes sobre Arboles")
+            practica()
             st.write("lo que sea")
             st.write("[Mas informacion>](https://www.youtube.com/watch?v=zeS2FlxF_0s)")
 
