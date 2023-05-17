@@ -1,9 +1,6 @@
 
 import streamlit as st 
-import requests
 from streamlit_lottie import st_lottie
-import pandas as pd
-from PIL import Image
 import matplotlib.pyplot as plt
 import networkx as nx
 from TDA_Arbol import Arbol, Nodo, dfs_preorden, mostrar_arbol,mostrar_arbol_con_networkx

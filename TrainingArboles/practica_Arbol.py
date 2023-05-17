@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from TDA_Arbol import Arbol, Nodo, dfs_preorden, mostrar_arbol, mostrar_arbol_con_networkx
 
 arbol = Arbol(Nodo("raiz"))
-
+st.set_option('client.showErrorOnDuplicateWidgetID', False)
 def practica():
     st.title("Programa de Árboles")
     st.write("Este programa te permitirá conocer las partes de un árbol.")
