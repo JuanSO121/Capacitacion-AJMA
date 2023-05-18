@@ -46,6 +46,7 @@ def dfs_preorden(nodo):
     return visitados
 
 def mostrar_arbol(arbol):
+    
     def mostrar_nodo(nodo, nivel):
         st.write("  "*nivel + f"{nodo.valor}")
         for hijo in nodo.hijos:

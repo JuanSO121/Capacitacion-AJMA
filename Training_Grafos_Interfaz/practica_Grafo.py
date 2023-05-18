@@ -95,4 +95,3 @@ def practica():
     elif opcion == "6":
         st.write("¡Hasta luego!")
 
-practica()
