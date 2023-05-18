@@ -1,4 +1,6 @@
 # TDA
+import networkx as nx
+import matplotlib.pyplot as plt
 class Heap(object):
     # Crea un monticulo
 
@@ -119,6 +121,3 @@ class MonticuloColaPrioridades:
             agregar(self.heap, (prioridad, tarea))
 
         return vector_aux
-
-
-
