@@ -51,7 +51,6 @@ def mostrar_info_peso():
     st.write("# ¿Qué es la etiqueta (peso) de una arista?")
     st.write("El peso en un Grafo es una especie de etiqueta que contiene un valor el cual se le asigna a las Aristas. Este valor puede representar, por ejemplo, tiempos o costos. Continuando con el ejemplo de los Vertices Cali y Bogota que se encuentran conectados por una Arista, se le puede asignar un peso a esta Arista, que podría equivaler al tiempo que se toma en llegar de una ciudad a la otra o al costo de los peajes.")
     
-    
 # Función para mostrar qué es un camino
 def que_es_camino():
     st.write("# ¿Qué es un camino?")
@@ -69,13 +68,6 @@ def mostrar_uso():
     st.write("# ¿Para qué se usan los grafos?")
     st.write("Los grafos se usan para resolver problemas en muchos campos. En el campo de la ingeniería, pueden ser utilizados para establecer si dos computadoras están conectadas por un enlace de comunicación entre las redes de computadoras.")
 
-# Función para mostrar el grafo
-def mostrar_grafo():
-    st.write("# Mostrar Grafo")
-    pos = nx.spring_layout(G)
-    nx.draw(G, pos, with_labels=True)
-    edge_labels = nx.get_edge_attributes(G, 'label')
-    nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 
 # Función para mostrar el grafo
 def mostrar_grafo():

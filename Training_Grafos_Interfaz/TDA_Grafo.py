@@ -200,24 +200,24 @@ def barrido_profundidad(grafo, vertice):
 ##################################
 
 
-def barrido_amplitud(grafo, vertice):
-    #Barrido en amplitud del grafo
-    cola= Cola()
-    while(vertice is not None):
-        if(not vertice.visitado):
-            vertice.visitado = True
-            arribo(cola, vertice)
-            while(not cola_vacia(cola)):
-                nodo = atencion(cola)
-                print(nodo.info)
-                adyacentes = nodo.adyacentes.inicio
-                while(adyacentes is not None):
-                    adyacente = buscar_vertice(grafo, adyacentes.destino)
-                    if(not adyacente.visitado):
-                        adyacente.visitado = True
-                        arribo(cola, adyacente)
-                    adyacentes = adyacentes.sig 
-        vertice = vertice.sig
+# def barrido_amplitud(grafo, vertice):
+#     #Barrido en amplitud del grafo
+#     cola= Cola()
+#     while(vertice is not None):
+#         if(not vertice.visitado):
+#             vertice.visitado = True
+#             arribo(cola, vertice)
+#             while(not cola_vacia(cola)):
+#                 nodo = atencion(cola)
+#                 print(nodo.info)
+#                 adyacentes = nodo.adyacentes.inicio
+#                 while(adyacentes is not None):
+#                     adyacente = buscar_vertice(grafo, adyacentes.destino)
+#                     if(not adyacente.visitado):
+#                         adyacente.visitado = True
+#                         arribo(cola, adyacente)
+#                     adyacentes = adyacentes.sig 
+#         vertice = vertice.sig
 
 # def dijkstra(grafo, origen, destino):
 #     # hallar el camino mas corto

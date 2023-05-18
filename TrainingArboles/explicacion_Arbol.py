@@ -3,7 +3,7 @@ import streamlit as st
 from streamlit_lottie import st_lottie
 import matplotlib.pyplot as plt
 import networkx as nx
-from TDA_Arbol import Arbol, Nodo, dfs_preorden,mostrar_arbol_con_networkx
+from TrainingArboles.TDA_Arbol import Arbol, Nodo, dfs_preorden,mostrar_arbol_con_networkx
 
 # Creamos el árbol
 raiz = Nodo("raiz")

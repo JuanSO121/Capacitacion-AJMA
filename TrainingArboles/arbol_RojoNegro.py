@@ -1,6 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from TDA_RojoNegro import ArbolRojoNegro
+from TrainingArboles.TDA_RojoNegro import ArbolRojoNegro
 import networkx as nx
 
 def agregar_nodos_y_enlaces(nodo, grafo, posiciones):

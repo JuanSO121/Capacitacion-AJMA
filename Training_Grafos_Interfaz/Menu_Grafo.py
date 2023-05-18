@@ -1,7 +1,5 @@
-from Colores import color
-
-from Explicacion_Grafo import explicacion
-from practica_Grafo import practica
+from Training_Grafos_Interfaz.Explicacion_Grafo import explicacion
+from Training_Grafos_Interfaz.practica_Grafo import practica
 import streamlit as st 
 import requests
 from streamlit_lottie import st_lottie
@@ -20,11 +18,14 @@ def catgar_lottieurl(url):
 lottie_codigo = catgar_lottieurl("https://assets9.lottiefiles.com/packages/lf20_3rwasyjy.json")
 imagen_video = Image.open("src/eevee.jpg")
 
-def menu():
+
+def menu_Grafos():
 
     st.title("Training Grafos")
     opciones = ["Inicio","Explicacion","Practica"]
-    seleccion = st.sidebar.selectbox("Menu",opciones)
+    
+    seleccion = st.selectbox("Menu",opciones)
+    
     if seleccion =="Explicacion":
         with st.container():
             st.subheader("Bienvenido al Training")
@@ -40,29 +41,27 @@ def menu():
             st.write("lo que sea")
             st.write("[Mas informacion>](https://www.youtube.com/watch?v=zeS2FlxF_0s)")
 
-menu()
+    with st.container():
+        st.write("---")
+        columna_izq,columna_der = st.columns(2)
 
-with st.container():
-    st.write("---")
-    columna_izq,columna_der = st.columns(2)
+        with columna_izq:
+            st.header("Primero")
+            # """ --> Salto de linea
+            st.write("""Lo que tengamos que poner""")
+            st.write("[Video>](https://www.youtube.com/watch?v=zeS2FlxF_0s)")
+            
+        with columna_der:
+            st_lottie(lottie_codigo, height=300, key="coding")
+            
+    with st.container():
+        st.write("---")
+        columna_imagen,columna_texto = st.columns((1, 2))
+        with columna_imagen:
+            st.image(imagen_video)
+        with columna_texto:
+            st.write("""Aqui se ponen cosas""")
+            st.markdown("[ver video...](https://www.youtube.com/watch?v=zeS2FlxF_0s)")
 
-    with columna_izq:
-        st.header("Primero")
-        # """ --> Salto de linea
-        st.write("""Lo que tengamos que poner""")
-        st.write("[Video>](https://www.youtube.com/watch?v=zeS2FlxF_0s)")
+
         
-    with columna_der:
-        st_lottie(lottie_codigo, height=300, key="coding")
-        
-with st.container():
-    st.write("---")
-    columna_imagen,columna_texto = st.columns((1, 2))
-    with columna_imagen:
-        st.image(imagen_video)
-    with columna_texto:
-        st.write("""Aqui se ponen cosas""")
-        st.markdown("[ver video...](https://www.youtube.com/watch?v=zeS2FlxF_0s)")
-
-
-    

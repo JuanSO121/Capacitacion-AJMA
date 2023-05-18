@@ -29,38 +29,54 @@ def mostrar_grafo():
 
 # Definimos una función para agregar un nodo al grafo
 def agregar_nodo():
-    nuevo_nodo = st.number_input("Ingrese el número del nuevo nodo:", min_value=1, step=1)
-    G.add_node(nuevo_nodo)
-    st.write(f"Se agregó el nodo {nuevo_nodo} al grafo.")
+    form = st.form(key="agregar_nodo_form")
+    with form:
+        nuevo_nodo = st.number_input("Ingrese el número del nuevo nodo:", min_value=1, step=1)
+        submit_button = st.form_submit_button(label="Enviar")
+    if submit_button:
+        G.add_node(nuevo_nodo)
+        st.write(f"Se agregó el nodo {nuevo_nodo} al grafo.")
 
 # Definimos una función para agregar una arista con peso al grafo
 def agregar_arista():
-    nodo_origen = st.number_input("Ingrese el número del nodo de origen:", min_value=1, step=1)
-    nodo_destino = st.number_input("Ingrese el número del nodo de destino:", min_value=1, step=1)
-    peso = st.number_input("Ingrese el peso de la arista:", min_value=0, step=1)
-    G.add_edge(nodo_origen, nodo_destino, weight=peso)
-    st.write(f"Se agregó la arista ({nodo_origen}, {nodo_destino}) con peso {peso} al grafo.")
+    form = st.form(key="agregar_arista_form")
+    with form:
+        peso = st.number_input("Ingrese el peso de la arista:", min_value=0, step=1)
+        nodo_origen = st.number_input("Ingrese el número del nodo de origen:", min_value=1, step=1)
+        nodo_destino = st.number_input("Ingrese el número del nodo de destino:", min_value=1, step=1)
+        submit_button = st.form_submit_button(label="Enviar")
+    if submit_button:
+        G.add_edge(nodo_origen, nodo_destino, weight=peso)
+        st.write(f"Se agregó la arista ({nodo_origen}, {nodo_destino}) con peso {peso} al grafo.")
 
 # Definimos una función para cambiar el peso de una arista en el grafo
 def cambiar_peso_arista():
-    nodo_origen = st.number_input("Ingrese el número del nodo de origen:", min_value=1, step=1)
-    nodo_destino = st.number_input("Ingrese el número del nodo de destino:", min_value=1, step=1)
-    peso_nuevo = st.number_input("Ingrese el nuevo peso de la arista:", min_value=0, step=1)
-    if G.has_edge(nodo_origen, nodo_destino):
-        G[nodo_origen][nodo_destino]['weight'] = peso_nuevo
-        st.write(f"Se cambió el peso de la arista ({nodo_origen}, {nodo_destino}) a {peso_nuevo}.")
-    else:
-        st.write(f"No hay arista entre el nodo {nodo_origen} y el nodo {nodo_destino}.")
+    form = st.form(key="cambiar_peso_arista_form")
+    with form:
+        nodo_origen = st.number_input("Ingrese el número del nodo de origen:", min_value=1, step=1)
+        nodo_destino = st.number_input("Ingrese el número del nodo de destino:", min_value=1, step=1)
+        peso_nuevo = st.number_input("Ingrese el nuevo peso de la arista:", min_value=0, step=1)
+        submit_button = st.form_submit_button(label="Enviar")
+    if submit_button:
+        if G.has_edge(nodo_origen, nodo_destino):
+            G[nodo_origen][nodo_destino]['weight'] = peso_nuevo
+            st.write(f"Se cambió el peso de la arista ({nodo_origen}, {nodo_destino}) a {peso_nuevo}.")
+        else:
+            st.write(f"No hay arista entre el nodo {nodo_origen} y el nodo {nodo_destino}.")
 
 # Definimos una función para obtener la distancia entre dos nodos
 def obtener_distancia():
-    nodo_origen = st.number_input("Ingrese el número del nodo de origen:", min_value=1, step=1)
-    nodo_destino = st.number_input("Ingrese el número del nodo de destino:", min_value=1, step=1)
-    try:
-        distancia = nx.dijkstra_path_length(G, nodo_origen, nodo_destino)
-        st.write(f"La distancia entre el nodo {nodo_origen} y el nodo {nodo_destino} es {distancia}.")
-    except nx.NetworkXNoPath:
-        st.write(f"No hay camino entre el nodo {nodo_origen} y el nodo {nodo_destino}.")
+    form = st.form(key="obtener_distancia_form")
+    with form:
+        nodo_origen = st.number_input("Ingrese el número del nodo de origen:", min_value=1, step=1)
+        nodo_destino = st.number_input("Ingrese el número del nodo de destino:", min_value=1, step=1)
+        submit_button = st.form_submit_button(label="Enviar")
+    if submit_button:
+        try:
+            distancia = nx.dijkstra_path_length(G, nodo_origen, nodo_destino)
+            st.write(f"La distancia entre el nodo {nodo_origen} y el nodo {nodo_destino} es {distancia}.")
+        except nx.NetworkXNoPath:
+            st.write(f"No hay camino entre el nodo {nodo_origen} y el nodo {nodo_destino}.")
 
 menu = {
     "1": "Mostrar grafo",
@@ -94,4 +110,3 @@ def practica():
         obtener_distancia()
     elif opcion == "6":
         st.write("¡Hasta luego!")
-
