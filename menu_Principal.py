@@ -17,7 +17,10 @@ def catgar_lottieurl(url):
     return r.json()
 
 lottie_codigo = catgar_lottieurl("https://assets9.lottiefiles.com/packages/lf20_3rwasyjy.json")
+lottie_study = catgar_lottieurl("https://assets4.lottiefiles.com/packages/lf20_phjobus6.json")
+lottie_conexion = catgar_lottieurl("https://assets10.lottiefiles.com/packages/lf20_Fdv4mj.json")
 imagen_video = Image.open("src/eevee.jpg")
+
 with st.container():
     columna_izq,columna_der = st.columns(2)
 
@@ -45,8 +48,6 @@ def menu():
 
 menu()
 
-
-        
 with st.container():
     st.write("---")
     columna_imagen,columna_texto = st.columns((1, 2))
@@ -55,6 +56,3 @@ with st.container():
     with columna_texto:
         st.write("""Motivación y Persistencia: Avanza hacia el Dominio de los Grafos, Montículos y Árboles: """)
         st.markdown("[ver video...](https://www.youtube.com/watch?v=zeS2FlxF_0s)")
-
-
-    

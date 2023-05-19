@@ -74,7 +74,7 @@ def obtener_distancia():
     if submit_button:
         try:
             distancia = nx.dijkstra_path_length(G, nodo_origen, nodo_destino)
-            st.write(f"La distancia entre el nodo {nodo_origen} y el nodo {nodo_destino} es {distancia}.")
+            st.write(f"La menor distancia entre el nodo {nodo_origen} y el nodo {nodo_destino} es {distancia}.")
         except nx.NetworkXNoPath:
             st.write(f"No hay camino entre el nodo {nodo_origen} y el nodo {nodo_destino}.")
 

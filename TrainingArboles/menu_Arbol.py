@@ -19,7 +19,7 @@ lottie_codigo = catgar_lottieurl("https://assets9.lottiefiles.com/packages/lf20_
 imagen_video = Image.open("src/eevee.jpg")
 
 def menu_Arboles():
-
+    
     st.title("Training Arboles")
     opciones = ["Inicio","Explicacion","Practica"]
     seleccion = st.selectbox("Menu",opciones)

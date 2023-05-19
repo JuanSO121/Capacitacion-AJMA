@@ -12,7 +12,6 @@ class Heap(object):
 
 def agregar(heap, dato):
     # Agrega un dato en el montículo
-
     heap.vector[heap.tamano] = dato
     flotar(heap, heap.tamano)
     heap.tamano += 1
