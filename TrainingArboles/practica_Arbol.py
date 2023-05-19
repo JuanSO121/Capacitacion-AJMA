@@ -23,7 +23,7 @@ def practica():
     if opcion == "Agregar nodo":
         with st.form(key="agregar_nodo_form"):
             valor = st.text_input("Ingrese el valor del nodo:", key="agregar_valor")
-            padre_valor = st.text_input("Ingrese el valor del padre (Inicial: raiz):", key="agregar_padre")
+            padre_valor = st.text_input("Ingrese el valor del padre (Inicial: raiz):", key="agregar_padre",)
             submit_button = st.form_submit_button("Agregar")
         
         if submit_button:
