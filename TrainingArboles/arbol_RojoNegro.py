@@ -1,7 +1,7 @@
+import streamlit as st
 import networkx as nx
 import matplotlib.pyplot as plt
-from TrainingArboles.TDA_RojoNegro import ArbolRojoNegro
-import networkx as nx
+from TDA_RojoNegro import ArbolRojoNegro
 
 def agregar_nodos_y_enlaces(nodo, grafo, posiciones):
     if nodo is None:
@@ -26,61 +26,65 @@ def visualizar_arbol(arbol):
     colores = [data["color"] for _, data in grafo.nodes(data=True)]
 
     nx.draw(grafo, posiciones, with_labels=True, node_color=colores)
-    plt.show()
+    st.pyplot(plt)
 
 arbol = ArbolRojoNegro()
-while True:
-    print("-------- Menú Árbol Rojo-Negro --------")
-    print("1. ¿Qué es un árbol rojo-negro?")
-    print("2. Mostrar partes del árbol")
-    print("3. Mostrar altura del árbol")
-    print("4. Insertar nodo")
-    print("5. Eliminar nodo")
-    print("6. Visualizar árbol")
-    print("7. Salir")
-    
-    opcion = input("Selecciona una opción: ")
 
-    if opcion == "1":
-        print("Un árbol rojo-negro es un tipo de árbol binario de búsqueda balanceado. Se caracteriza por tener las siguientes propiedades:")
-        print("- Cada nodo es rojo o negro.")
-        print("- La raíz es negra.")
-        print("- Todas las hojas (nodos nulos) son negras.")
-        print("- Si un nodo es rojo, entonces ambos hijos son negros.")
-        print("- Para cada nodo, todos los caminos simples desde ese nodo hasta las hojas descendientes contienen el mismo número de nodos negros.")
+def arbolRN():
+    st.title("Programa de Árboles")
+    st.write("Este programa te permitirá conocer las partes de un árbol.")
 
-    elif opcion == "2":
-        print("Las partes de un árbol rojo-negro son:")
-        print("- Nodo: Cada elemento almacenado en el árbol se representa como un nodo.")
-        print("- Raíz: Es el nodo superior del árbol.")
-        print("- Hoja: Es un nodo nulo que representa un valor no presente en el árbol.")
-        print("- Padre: Es el nodo que está directamente por encima de un nodo dado.")
-        print("- Hijo: Son los nodos que están directamente debajo de un nodo dado.")
+    opciones = [
+        "¿Qué es un árbol rojo-negro?",
+        "Mostrar partes del árbol",
+        "Mostrar altura del árbol",
+        "Insertar nodo",
+        "Eliminar nodo",
+        "Visualizar árbol"
+    ]
+    st.sidebar.title("Arboles Rojo-Negro")
 
-    elif opcion == "3":
-        altura = arbol.altura()
-        print("La altura del árbol es:", altura)
+    opcion = st.selectbox("Menu", opciones)
 
-    elif opcion == "4":
-        dato = int(input("Ingrese el valor del nodo a insertar: "))
-        arbol.insertar(dato)
-        print("Nodo insertado correctamente.")
+    if opcion == "¿Qué es un árbol rojo-negro?":
+        st.write("Un árbol rojo-negro es un tipo de árbol binario de búsqueda balanceado. Se caracteriza por tener las siguientes propiedades:")
+        st.write("- Cada nodo es rojo o negro.")
+        st.write("- La raíz es negra.")
+        st.write("- Todas las hojas (nodos nulos) son negras.")
+        st.write("- Si un nodo es rojo, entonces ambos hijos son negros.")
+        st.write("- Para cada nodo, todos los caminos simples desde ese nodo hasta las hojas descendientes contienen el mismo número de nodos negros.")
 
-    elif opcion == "5":
-        dato = int(input("Ingrese el valor del nodo a eliminar: "))
-        if arbol.eliminar(dato):
-            print("Nodo eliminado correctamente.")
-        else:
-            print("El nodo no existe en el árbol.")
+    elif opcion == "Mostrar partes del árbol":
+        st.write("Las partes de un árbol rojo-negro son:")
+        st.write("- Nodo: Cada elemento almacenado en el árbol se representa como un nodo.")
+        st.write("- Raíz: Es el nodo superior del árbol.")
+        st.write("- Hoja: Es un nodo nulo que representa un valor no presente en el árbol.")
+        st.write("- Padre: Es el nodo que está directamente por encima de un nodo dado.")
+        st.write("- Hijo: Son los nodos que están directamente debajo de un nodo dado.")
 
-    elif opcion == "6":
+    elif opcion == "Mostrar altura del árbol":
+        st.write("La altura del árbol es:", arbol.altura())
+
+    elif opcion == "Insertar nodo":
+        st.write("Insertar nodo:")
+        with st.form(key="agregar_nodo_form"):
+            dato = st.text_input("Ingrese el dato del nodo:")
+            submit_button = st.form_submit_button("Agregar")
+            if submit_button:
+                arbol.insertar(dato)
+                st.success("Nodo insertado correctamente.")
+
+    elif opcion == "Eliminar nodo":
+        st.write("Eliminar nodo:")
+        with st.form(key="eliminar_nodo_form"):
+            dato = st.text_input("Ingrese el dato del nodo a eliminar:")
+            submit_button = st.form_submit_button("Eliminar")
+            if submit_button:
+                arbol.eliminar(int(dato))
+                st.success("Nodo eliminado correctamente.")
+
+    elif opcion == "Visualizar árbol":
         visualizar_arbol(arbol)
 
-    elif opcion == "7":
-        print("¡Hasta luego!")
-        break
-
-    else:
-        print("Opción inválida. Por favor, seleccione una opción válida.")
-
-    print()
+if __name__ == "__main__":
+    arbolRN()

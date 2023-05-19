@@ -35,7 +35,7 @@ def agregar_nodo():
         submit_button = st.form_submit_button(label="Enviar")
     if submit_button:
         G.add_node(nuevo_nodo)
-        st.write(f"Se agregó el nodo {nuevo_nodo} al grafo.")
+        st.success(f"Se agregó el nodo {nuevo_nodo} al grafo.")
 
 # Definimos una función para agregar una arista con peso al grafo
 def agregar_arista():
@@ -47,7 +47,7 @@ def agregar_arista():
         submit_button = st.form_submit_button(label="Enviar")
     if submit_button:
         G.add_edge(nodo_origen, nodo_destino, weight=peso)
-        st.write(f"Se agregó la arista ({nodo_origen}, {nodo_destino}) con peso {peso} al grafo.")
+        st.success(f"Se agregó la arista ({nodo_origen}, {nodo_destino}) con peso {peso} al grafo.")
 
 # Definimos una función para cambiar el peso de una arista en el grafo
 def cambiar_peso_arista():
@@ -60,7 +60,7 @@ def cambiar_peso_arista():
     if submit_button:
         if G.has_edge(nodo_origen, nodo_destino):
             G[nodo_origen][nodo_destino]['weight'] = peso_nuevo
-            st.write(f"Se cambió el peso de la arista ({nodo_origen}, {nodo_destino}) a {peso_nuevo}.")
+            st.success(f"Se cambió el peso de la arista ({nodo_origen}, {nodo_destino}) a {peso_nuevo}.")
         else:
             st.write(f"No hay arista entre el nodo {nodo_origen} y el nodo {nodo_destino}.")
 
@@ -93,7 +93,7 @@ def practica():
     st.subheader("-- En este capítulo puedes modificar el grafo --")
     opciones = list(menu.keys())
     descripcion_opciones = [f"{opcion}: {menu[opcion]}" for opcion in opciones]
-    opcion_seleccionada = st.selectbox("Selecciona una opción:", descripcion_opciones)
+    opcion_seleccionada = st.selectbox("Selecciona una opción:", descripcion_opciones, key="menu_opcion_practica_Grafo")
 
     # Obtener la opción seleccionada sin el número
     opcion = opcion_seleccionada.split(":")[0].strip()

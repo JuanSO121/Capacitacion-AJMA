@@ -1,12 +1,9 @@
-from TrainingArboles.explicacion_Arbol import explicacion
-from TrainingArboles.practica_Arbol import practica
-# streamlit run app.py
 import streamlit as st 
 import requests
 from streamlit_lottie import st_lottie
 import pandas as pd
 from PIL import Image
-
+from Training_Monticulos.practica_Monticulo import practica
 # funcion animacion
 # Configuración de la página de la aplicación web
 def catgar_lottieurl(url):
@@ -18,21 +15,19 @@ def catgar_lottieurl(url):
 lottie_codigo = catgar_lottieurl("https://assets9.lottiefiles.com/packages/lf20_3rwasyjy.json")
 imagen_video = Image.open("src/eevee.jpg")
 
-def menu_Arboles():
+def menu_Monticulos():
 
-    st.title("Training Arboles")
+    st.title("Training Monticulos")
     opciones = ["Inicio","Explicacion","Practica"]
     seleccion = st.selectbox("Menu",opciones)
     st.write("---")
-    
     if seleccion =="Explicacion":
         with st.container():
             st.subheader("Bienvenido al Training")
-            st.title("Introduccion sobre Arboles")
-            explicacion()
-            
+            st.title("Introduccion sobre Monticulos")
+            # explicacion()
+
     elif seleccion =="Practica":
         with st.container():
-            
-            st.title("Practica tus saberes sobre Arboles")
+            st.title("Practica tus saberes sobre Monticulos")
             practica()

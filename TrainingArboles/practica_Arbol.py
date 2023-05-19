@@ -5,33 +5,28 @@ from TrainingArboles.TDA_Arbol import Arbol, Nodo, dfs_preorden, mostrar_arbol, 
 
 arbol = Arbol(Nodo("raiz"))
 
-# st.set_option('deprecation.showDuplicateWidgetID', False)
-
-
-
 def practica():
     st.title("Programa de Árboles")
     st.write("Este programa te permitirá conocer las partes de un árbol.")
     
-    opciones = {
-        "Agregar nodo": "1",
-        "Eliminar nodo": "2",
-        "Buscar nodo": "3",
-        "Visualizar árbol": "4",
-        "Mostrar partes del árbol": "5",
-    }
+    opciones = [
+        "Agregar nodo",
+        "Eliminar nodo",
+        "Buscar nodo",
+        "Visualizar árbol",
+        "Mostrar partes del árbol",
+    ]
     st.sidebar.title("Practica Arboles")
     
-    while True:
-        
-        descripcion_opciones = list(opciones.keys())
-        opcion_seleccionada = st.selectbox("Seleccione una opción:", descripcion_opciones, key="menu_opcion")
-
-        opcion = opciones[opcion_seleccionada]
-        
-        if opcion == "1":
+    opcion = st.selectbox("Menu", opciones)
+    
+    if opcion == "Agregar nodo":
+        with st.form(key="agregar_nodo_form"):
             valor = st.text_input("Ingrese el valor del nodo:", key="agregar_valor")
             padre_valor = st.text_input("Ingrese el valor del padre (Inicial: raiz):", key="agregar_padre")
+            submit_button = st.form_submit_button("Agregar")
+        
+        if submit_button:
             if padre_valor == "raiz":
                 arbol.agregar_nodo(valor, arbol.raiz)
             else:
@@ -40,24 +35,37 @@ def practica():
                     arbol.agregar_nodo(valor, padre)
                 else:
                     st.write("El nodo padre no existe")
-                    
-        elif opcion == "2":
+            
+            st.success(f"Nodo '{valor}' agregado con éxito al padre '{padre_valor}' .")
+                
+    elif opcion == "Eliminar nodo":
+        with st.form(key="eliminar_nodo_form"):
             valor = st.text_input("Ingrese el valor del nodo a eliminar:", key="eliminar_valor")
+            submit_button = st.form_submit_button("Eliminar")
+        
+        if submit_button:
             nodo = arbol.buscar_nodo(valor)
             if nodo is not None:
                 arbol.eliminar_nodo(nodo)
+                st.success(f"Nodo '{valor}' eliminado con éxito.")
             else:
                 st.write("El nodo no existe")
-        elif opcion == "3":
+                
+    elif opcion == "Buscar nodo":
+        with st.form(key="buscar_nodo_form"):
             valor = st.text_input("Ingrese el valor del nodo a buscar:", key="buscar_valor")
+            submit_button = st.form_submit_button("Buscar")
+        
+        if submit_button:
             nodo = arbol.buscar_nodo(valor)
             if nodo is not None:
                 st.write("Nodo encontrado")
             else:
                 st.write("Nodo no encontrado")
-        elif opcion == "4":
-            fig = mostrar_arbol_con_networkx(arbol)
-            st.pyplot(fig)
-        elif opcion == "5":
-            mostrar_arbol(arbol)
-
+                
+    elif opcion == "Visualizar árbol":
+        fig = mostrar_arbol_con_networkx(arbol)
+        st.pyplot(fig)
+        
+    elif opcion == "Mostrar partes del árbol":
+        mostrar_arbol(arbol)
