@@ -4,6 +4,7 @@ from streamlit_lottie import st_lottie
 import pandas as pd
 from PIL import Image
 from Training_Monticulos.practica_Monticulo import practica
+from Training_Monticulos.Explicacion_Monticulos import explicacion
 # funcion animacion
 # Configuración de la página de la aplicación web
 def catgar_lottieurl(url):
@@ -25,7 +26,7 @@ def menu_Monticulos():
         with st.container():
             st.subheader("Bienvenido al Training")
             st.title("Introduccion sobre Monticulos")
-            # explicacion()
+            explicacion()
 
     elif seleccion =="Practica":
         with st.container():
