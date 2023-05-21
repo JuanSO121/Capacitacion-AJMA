@@ -20,7 +20,7 @@ def menu_Monticulos():
 
     st.title("Training Monticulos")
     opciones = ["Inicio","Explicacion","Practica"]
-    seleccion = st.selectbox("Menu",opciones)
+    seleccion = st.selectbox("Menu monticulos",opciones)
     st.write("---")
     if seleccion =="Explicacion":
         with st.container():
