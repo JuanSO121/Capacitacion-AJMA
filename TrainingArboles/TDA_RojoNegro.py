@@ -1,5 +1,5 @@
 class Nodo:
-    def __init__(self, dato):
+    def _init_(self, dato):
         self.dato = dato
         self.color = "ROJO"  # Por defecto, el nuevo nodo se coloca como rojo
         self.padre = None
@@ -7,7 +7,7 @@ class Nodo:
         self.derecho = None
 
 class ArbolRojoNegro:
-    def __init__(self):
+    def _init_(self):
         self.raiz = None
 
     def insertar(self, dato):
@@ -71,20 +71,6 @@ class ArbolRojoNegro:
 
         self.raiz.color = "NEGRO"
 
-    def altura(self):
-        if self.raiz is None:
-            return 0
-        else:
-            return self.__altura_recursiva(self.raiz)
-
-    def __altura_recursiva(self, nodo):
-        if nodo is None:
-            return -1
-        else:
-            altura_izquierda = self.__altura_recursiva(nodo.izquierdo)
-            altura_derecha = self.__altura_recursiva(nodo.derecho)
-            return max(altura_izquierda, altura_derecha) + 1
-    
     def __rotar_izquierda(self, nodo):
         nodo_derecho = nodo.derecho
         nodo.derecho = nodo_derecho.izquierdo
@@ -100,15 +86,7 @@ class ArbolRojoNegro:
             nodo.padre.izquierdo = nodo_derecho
         else:
             nodo.padre.derecho = nodo_derecho
-
-        nodo_derecho.izquierdo = nodo
-        nodo.padre = nodo_derecho
-
-        if nodo_derecho.padre is not None:
-            if nodo_derecho.padre.izquierdo == nodo:
-                nodo_derecho.padre.izquierdo = nodo_derecho
-            else:
-                nodo_derecho.padre.derecho = nodo_derecho
+        nodo_derecho.izquierdo
 
     def __rotar_derecha(self, nodo):
         nodo_izquierdo = nodo.izquierdo
@@ -176,3 +154,15 @@ class ArbolRojoNegro:
             self.__imprimir_inorden_recursivo(nodo.izquierdo)
             print(nodo.dato, end=" ")
             self.__imprimir_inorden_recursivo(nodo.derecho)
+
+    def altura(self):
+        return self.__altura_recursiva(self.raiz)
+
+    def __altura_recursiva(self, nodo):
+        if nodo is None:
+            return 0
+
+        altura_izquierda = self.__altura_recursiva(nodo.izquierdo)
+        altura_derecha = self.__altura_recursiva(nodo.derecho)
+
+        return max(altura_izquierda, altura_derecha) + 1

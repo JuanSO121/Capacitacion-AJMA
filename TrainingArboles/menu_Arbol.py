@@ -1,5 +1,6 @@
 from TrainingArboles.explicacion_Arbol import explicacion
 from TrainingArboles.practica_Arbol import practica
+from TrainingArboles.codigoMorse_Arbol import morse
 # streamlit run app.py
 import streamlit as st 
 import requests
@@ -21,7 +22,7 @@ imagen_video = Image.open("src/eevee.jpg")
 def menu_Arboles():
     
     st.title("Training Arboles")
-    opciones = ["Inicio","Explicacion","Practica"]
+    opciones = ["Inicio","Explicacion","Practica","Practica Codificacion Morse"]
     seleccion = st.selectbox("Menu",opciones)
     st.write("---")
     
@@ -36,3 +37,9 @@ def menu_Arboles():
             
             st.title("Practica tus saberes sobre Arboles")
             practica()
+            
+    elif seleccion =="Practica Codificacion Morse":
+        with st.container():
+            
+            st.title("Aplicando Arboles en Codificacion Morse")
+            morse()

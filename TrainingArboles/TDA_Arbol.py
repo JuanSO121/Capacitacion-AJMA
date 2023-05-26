@@ -1,3 +1,4 @@
+
 import networkx as nx
 import matplotlib.pyplot as plt
 import streamlit as st 
@@ -91,3 +92,4 @@ def mostrar_arbol_con_networkx(arbol):
     fig, ax = plt.subplots()
     nx.draw_networkx(G, pos, with_labels=True, arrows=True, ax=ax)
     return fig
+

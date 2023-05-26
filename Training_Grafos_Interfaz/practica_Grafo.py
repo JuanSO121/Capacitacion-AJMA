@@ -1,7 +1,7 @@
 import streamlit as st
 import networkx as nx
 import matplotlib.pyplot as plt
-
+from Training_Grafos_Interfaz.TDA_Grafo import exportar_tda_grafo
 # Creamos un grafo vacío
 G = nx.Graph()
 

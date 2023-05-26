@@ -61,25 +61,35 @@ def mostrar_grafo():
 
 def calcular_prioridad(edad, motivo):
     prioridad = 0
-    if edad >= 60:
-        prioridad += 3
+
+    if edad >= 80:
+        prioridad += 5
+    elif edad >= 60:
+        prioridad += 4
     elif edad >= 40:
+        prioridad += 3
+    elif edad >= 20:
         prioridad += 2
     else:
         prioridad += 1
     
     if motivo == "Emergencia":
+        prioridad += 5
+    elif motivo == "Parto":
+        prioridad += 4
+    elif motivo == "Operacion":
         prioridad += 3
-    elif motivo == "Urgencia":
+    elif motivo == "Revision":
         prioridad += 2
     else:
         prioridad += 1
     
     return prioridad
 
+
 def practica():
     st.title("Programa de Montículos")
-    st.write("Este programa te permite reforzar tus conocimientos sobre montículos al practicar tus saberes aplicados en el funcionamiento de monticulos en el sector de la salud")
+    st.write("Este programa te permite reforzar tus conocimientos sobre colas de prioridades en montículos al practicar tus saberes aplicados en el funcionamiento de monticulos en el sector de la salud")
 
     opciones = [
         "Insertar paciente",
@@ -99,13 +109,13 @@ def practica():
         with form:
             nombre = st.text_input("Ingrese el nombre del paciente:")
             edad = st.number_input("Ingrese la edad del paciente:", min_value=0)
-            motivo = st.selectbox("Seleccione el motivo de la visita:", ["Emergencia", "Urgencia", "Consulta"])
+            motivo = st.selectbox("Seleccione el motivo de la visita:", ["Emergencia", "Parto","Operacion","Revision", "Consulta"])
             submit_button = st.form_submit_button(label="Enviar")
         if submit_button:
             prioridad = calcular_prioridad(edad, motivo)
             paciente = (prioridad, nombre)
             cola_prioridades.insertar(prioridad, paciente)
-            st.success(f"Paciente '{nombre}' con prioridad {prioridad} insertado con éxito.")
+            st.success(f"Paciente '{nombre}' ingresado por {motivo} a sido agregado con éxito.")
 
     elif opcion == "Atender paciente de mayor prioridad":
         st.subheader("Atender paciente de mayor prioridad")
@@ -132,7 +142,7 @@ def practica():
         if pacientes:
             st.write("Pacientes por prioridad:")
             for paciente in pacientes:
-                st.write(paciente[1])
+                st.write(f"Nombre: {paciente[1]}, Prioridad: {paciente[0]}")
         else:
             st.write("No hay pacientes en la cola de prioridades.")
 

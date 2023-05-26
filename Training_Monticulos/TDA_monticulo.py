@@ -125,6 +125,7 @@ class MonticuloColaPrioridades:
             agregar(self.heap, (prioridad, paciente))
 
         return pacientes_por_prioridad
+
     
     def contiene(self, paciente):
         for prioridad, paciente_actual in self.heap.vector[:self.heap.tamano]:

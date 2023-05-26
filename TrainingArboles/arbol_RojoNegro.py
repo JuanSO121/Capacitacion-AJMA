@@ -1,7 +1,7 @@
 import streamlit as st
 import networkx as nx
 import matplotlib.pyplot as plt
-from TDA_RojoNegro import ArbolRojoNegro
+from TrainingArboles.TDA_RojoNegro import ArbolRojoNegro
 
 def agregar_nodos_y_enlaces(nodo, grafo, posiciones):
     if nodo is None:
@@ -11,11 +11,12 @@ def agregar_nodos_y_enlaces(nodo, grafo, posiciones):
     agregar_nodos_y_enlaces(nodo.derecho, grafo, posiciones)
 
     color = "red" if nodo.color == "ROJO" else "black"
-    grafo.add_node(nodo.dato, color=color)
-    posiciones[nodo.dato] = (nodo.dato, 0)
+    grafo.add_node(nodo, color=color)
+    posiciones[nodo] = (nodo.dato, 0)
 
     if nodo.padre is not None:
-        grafo.add_edge(nodo.padre.dato, nodo.dato)
+        grafo.add_edge(nodo.padre, nodo)
+
 
 def visualizar_arbol(arbol):
     grafo = nx.Graph()
@@ -23,10 +24,30 @@ def visualizar_arbol(arbol):
 
     agregar_nodos_y_enlaces(arbol.raiz, grafo, posiciones)
 
+    fig, ax = plt.subplots(figsize=(8, 8))  # Ajustar el tamaño del gráfico según sea necesario
+
+    # Invertir las coordenadas para mostrar la raíz en la parte superior
+    for nodo, (x, y) in posiciones.items():
+        posiciones[nodo] = (x, -y)
+
     colores = [data["color"] for _, data in grafo.nodes(data=True)]
 
-    nx.draw(grafo, posiciones, with_labels=True, node_color=colores)
-    st.pyplot(plt)
+    for nodo, (x, y) in posiciones.items():
+        color = "red" if nodo.color == "ROJO" else "black"
+        texto_color = "white" if nodo.color == "NEGRO" else "black"  # Color blanco para nodos negros
+        ax.text(x, y, str(nodo.dato), fontsize=12, color=texto_color, ha="center", va="center",
+                bbox=dict(facecolor=color, edgecolor=color, boxstyle="circle"))
+
+        if nodo.padre is not None:
+            x_padre, y_padre = posiciones[nodo.padre]
+            ax.plot([x_padre, x], [y_padre, y], color=color, linewidth=1, linestyle="-")
+
+    # Ajustar el aspecto del gráfico para mostrar una estructura de árbol
+    ax.set_aspect(1)
+    ax.axis("off")
+    ax.invert_yaxis()  # Invierte y muestra la raíz en la parte superior
+
+    plt.show()
 
 arbol = ArbolRojoNegro()
 
@@ -85,6 +106,3 @@ def arbolRN():
 
     elif opcion == "Visualizar árbol":
         visualizar_arbol(arbol)
-
-if __name__ == "__main__":
-    arbolRN()

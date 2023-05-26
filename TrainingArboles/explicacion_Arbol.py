@@ -4,6 +4,7 @@ from streamlit_lottie import st_lottie
 import matplotlib.pyplot as plt
 import networkx as nx
 from TrainingArboles.TDA_Arbol import Arbol, Nodo, dfs_preorden,mostrar_arbol_con_networkx
+from TrainingArboles.arbol_RojoNegro import arbolRN
 
 # Creamos el árbol
 raiz = Nodo("raiz")
@@ -32,8 +33,9 @@ menu = {
     "6": "¿Qué es un hijo?",
     "7": "¿Qué es una rama?",
     "8": "¿Qué es un subárbol?",
-    "9": "Mostrar árbol",
-    "0": "Volver al menu Principal"
+    "9": "Arbol Rojo Negro",
+    "10": "Arbol Binario lineal",
+    "11": "Mostrar árbol"
 }
 
 # Funciónes que definen y muestran cada parte de un arbol
@@ -94,7 +96,11 @@ def explicacion():
     elif opcion == "8":
         mostrar_subarbol()
     elif opcion == "9":
+        arbolRN()
+    elif opcion == "10":
+        st.write("\n es una estructura de datos que consta de nodos enlazados de manera lineal, donde cada nodo tiene un máximo de dos hijos: un hijo izquierdo y un hijo derecho. Cada nodo en el árbol binario lineal se conecta a su hijo izquierdo y/o derecho, formando una secuencia lineal de nodos.")
+        st.write(" los subárboles en un árbol binario lineal son porciones del árbol más grande que se derivan de un nodo raíz específico. Representan posibles caminos a recorrer en el árbol y nos permiten analizar y manipular secciones específicas de la estructura de datos.")
+
+    elif opcion == "11":
         fig = mostrar_arbol_con_networkx(arbol)
         st.pyplot(fig)
-    elif opcion == "0":
-        st.write("¡Hasta luego!")

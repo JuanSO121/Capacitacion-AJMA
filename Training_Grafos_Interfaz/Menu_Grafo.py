@@ -1,5 +1,6 @@
 from Training_Grafos_Interfaz.Explicacion_Grafo import explicacion
 from Training_Grafos_Interfaz.practica_Grafo import practica
+from Training_Grafos_Interfaz.grafos_Puertos import puerto
 import streamlit as st 
 import requests
 from streamlit_lottie import st_lottie
@@ -22,7 +23,7 @@ imagen_video = Image.open("src/eevee.jpg")
 def menu_Grafos():
 
     st.title("Training Grafos")
-    opciones = ["Inicio","Explicacion","Practica"]
+    opciones = ["Inicio","Explicacion","Practica","Practica Puertos"]
     
     seleccion = st.selectbox("Menu",opciones)
     st.write("---")
@@ -39,6 +40,13 @@ def menu_Grafos():
             
             st.title("Practica tus saberes sobre Grafos")
             practica()
+            
+    elif seleccion =="Practica Puertos":
+        with st.container():
+            
+            st.title("Practica tus saberes sobre Grafos aplicandolos de una forma practica")
+            puerto()
+
 
 
 
