@@ -10,19 +10,35 @@ from PIL import Image
 # funcion animacion
 # Configuración de la página de la aplicación web
 
-def catgar_lottieurl(url):
+def cargar_lottieurl(url):
     r = requests.get(url)
     if r.status_code != 200:
         return None
     return r.json()
 
-lottie_codigo = catgar_lottieurl("https://assets9.lottiefiles.com/packages/lf20_3rwasyjy.json")
+lottie_codigo = cargar_lottieurl("https://assets9.lottiefiles.com/packages/lf20_3rwasyjy.json")
+lottie_study = cargar_lottieurl("https://assets4.lottiefiles.com/packages/lf20_phjobus6.json")
+lottie_conexion = cargar_lottieurl("https://assets10.lottiefiles.com/packages/lf20_Fdv4mj.json")
+saludo = cargar_lottieurl("https://assets2.lottiefiles.com/packages/lf20_khtt8ejx.json")
+
 imagen_video = Image.open("src/eevee.jpg")
 
-
 def menu_Grafos():
+    # Diseño de la página
+    with st.container():
+        columna_izq,columna_der = st.columns(2)
 
-    st.title("Training Grafos")
+        with columna_izq:
+            st.header("Motivación y Persistencia: Avanza hacia el Dominio de los Grafos, Montículos y Árboles")
+            # """ --> Salto de linea
+        with columna_der:
+            st_lottie(lottie_conexion, height=230, key="coding0")
+            
+    st.markdown("---")
+
+    st.title("Capaciotacion de Grafos")
+    
+    st.write('"Los grafos son como mapas que nos permiten explorar y comprender las interconexiones y relaciones complejas que existen en el mundo."')
     opciones = ["Inicio","Explicacion","Practica","Practica Puertos"]
     
     seleccion = st.selectbox("Menu",opciones)

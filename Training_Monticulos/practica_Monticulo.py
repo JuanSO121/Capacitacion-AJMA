@@ -1,6 +1,6 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-from Training_Monticulos.TDA_monticulo import MonticuloColaPrioridades, heap_vacio, atencion,pos_jerarquica
+from Training_Monticulos.TDA_monticulo import MonticuloColaPrioridades, heap_vacio, atencion, pos_jerarquica
 import streamlit as st
 
 cola_prioridades = MonticuloColaPrioridades()
@@ -12,6 +12,7 @@ def cancelar_atencion(paciente):
         st.write(f"Se ha cancelado la atención del paciente {paciente}.")
     else:
         st.write(f"No se encontró al paciente {paciente} en la cola de prioridades.")
+
 
 def construir_grafo_orden_llegada():
     G = nx.DiGraph()
@@ -50,6 +51,7 @@ def construir_grafo():
             G.add_edge(paciente_padre, paciente)
     return G
 
+
 def mostrar_grafo():
     G = construir_grafo()
     pos = pos_jerarquica(G)
@@ -59,7 +61,7 @@ def mostrar_grafo():
     st.pyplot(fig)
 
 
-def calcular_prioridad(edad, motivo):
+def calcular_prioridad(edad, categoria):
     prioridad = 0
 
     if edad >= 80:
@@ -73,23 +75,24 @@ def calcular_prioridad(edad, motivo):
     else:
         prioridad += 1
     
-    if motivo == "Emergencia":
+    if categoria == "Emergencia":
         prioridad += 5
-    elif motivo == "Parto":
+    elif categoria == "Urgencia":
         prioridad += 4
-    elif motivo == "Operacion":
+    elif categoria == "Electiva":
         prioridad += 3
-    elif motivo == "Revision":
+    elif categoria == "Consulta":
         prioridad += 2
     else:
         prioridad += 1
     
-    return prioridad
+    return prioridad, categoria
+
 
 
 def practica():
     st.title("Programa de Montículos")
-    st.write("Este programa te permite reforzar tus conocimientos sobre colas de prioridades en montículos al practicar tus saberes aplicados en el funcionamiento de monticulos en el sector de la salud")
+    st.write("Este programa te permite reforzar tus conocimientos sobre colas de prioridades en montículos al practicar tus saberes aplicados en el funcionamiento de montículos en el sector de la salud")
 
     opciones = [
         "Insertar paciente",
@@ -107,22 +110,25 @@ def practica():
         st.subheader("Insertar paciente")
         form = st.form(key="insertar_paciente_form")
         with form:
+            categoria = st.selectbox("Seleccione la categoría/motivo de ingreso:", ["Emergencia", "Urgencia", "Electiva", "Consulta"])
             nombre = st.text_input("Ingrese el nombre del paciente:")
             edad = st.number_input("Ingrese la edad del paciente:", min_value=0)
-            motivo = st.selectbox("Seleccione el motivo de la visita:", ["Emergencia", "Parto","Operacion","Revision", "Consulta"])
+            problema = st.text_area("Ingrese los detalles del problema:")
             submit_button = st.form_submit_button(label="Enviar")
         if submit_button:
-            prioridad = calcular_prioridad(edad, motivo)
-            paciente = (prioridad, nombre)
+            prioridad, motivo = calcular_prioridad(edad,categoria)
+# Declarar paciente y sus atributos
+            paciente = (prioridad, nombre, problema)
+            
             cola_prioridades.insertar(prioridad, paciente)
-            st.success(f"Paciente '{nombre}' ingresado por {motivo} a sido agregado con éxito.")
+            st.success(f"Paciente '{nombre}' ingresado por {motivo} ha sido agregado con éxito.")
 
     elif opcion == "Atender paciente de mayor prioridad":
         st.subheader("Atender paciente de mayor prioridad")
         if not heap_vacio(cola_prioridades.heap):
             maxima_prioridad, paciente = cola_prioridades.extraer_maximo()
             st.write("Paciente con la mayor prioridad:", paciente[1])
-            st.success(f"Paciente '{paciente[1]}' a sido atendido.")
+            st.success(f"Paciente '{paciente[1]}' ha sido atendido.")
         else:
             st.write("La cola de prioridades está vacía.")
 
@@ -132,13 +138,15 @@ def practica():
         if pacientes:
             st.write("Pacientes por orden de llegada:")
             for paciente in pacientes:
-                st.write(paciente[1])
+                st.write(f"Nombre: {paciente[1]}, Motivo de ingreso: {paciente[2]}")
         else:
             st.write("No hay pacientes en espera.")
+
 
     elif opcion == "Mostrar pacientes por prioridad":
         st.subheader("Mostrar pacientes por prioridad")
         pacientes = cola_prioridades.ver_pacientes_por_prioridad()
+        
         if pacientes:
             st.write("Pacientes por prioridad:")
             for paciente in pacientes:
@@ -147,19 +155,13 @@ def practica():
             st.write("No hay pacientes en la cola de prioridades.")
 
     elif opcion == "Mostrar Montículo en orden de llegada":
-        st.subheader("Mostrar Montículo en orden de llegada")
         heap_aux = cola_prioridades.heap
-        if not heap_vacio(heap_aux):
-            st.write("Cola en orden de llegada:")
-            for i in range(heap_aux.tamano):
-                prioridad, paciente = heap_aux.vector[i]
-                st.write(f"Prioridad: {prioridad} - Paciente: {paciente[1]}")
+                  
         if not heap_vacio(cola_prioridades.heap):
-            st.subheader("Atencion de pacientes Orden de llegada")
+            st.subheader("Atención normal de pacientes en orden de llegada")
             mostrar_grafo_orden_llegada()
         else:
-            st.write("No hay pacientes en la cola de prioridades.")
-        
+            st.write("No hay pacientes en la cola.")
 
     elif opcion == "Mostrar Montículo por prioridades":
         st.subheader("Mostrar Montículo por prioridades")
@@ -170,11 +172,12 @@ def practica():
                 prioridad, paciente = heap_aux.vector[i]
                 st.write(f"Prioridad: {prioridad} - Paciente: {paciente[1]}")
 
-        
         if not heap_vacio(cola_prioridades.heap):
-            st.subheader("Atencion de pacientes debido a su prioridad")
+            st.subheader("Atención de pacientes según su prioridad")
             mostrar_grafo()
-    
+        else:
+            st.write("No hay pacientes en la cola de prioridades.")
+
     elif opcion == "Cancelar atención":
         pacientes = cola_prioridades.ver_pacientes_orden_llegada()
 
@@ -189,6 +192,5 @@ def practica():
         # Eliminar el paciente de la lista de pacientes
         pacientes = [paciente for paciente in pacientes if paciente[1] != paciente_cancelar]
 
-        
     else:
-            st.write("Opción inválida. Por favor, seleccione una opción válida.")
+        st.write("Opción inválida. Por favor, seleccione una opción válida.")

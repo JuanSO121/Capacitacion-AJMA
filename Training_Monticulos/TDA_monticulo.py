@@ -8,7 +8,7 @@ class Heap(object):
         self.vector = [None] * tamano
 
 def agregar(heap, dato):
-    heap.vector[heap.tamano] = dato
+    heap.vector[heap.heap] = dato
     flotar(heap, heap.tamano)
     heap.tamano += 1
 
@@ -126,7 +126,6 @@ class MonticuloColaPrioridades:
 
         return pacientes_por_prioridad
 
-    
     def contiene(self, paciente):
         for prioridad, paciente_actual in self.heap.vector[:self.heap.tamano]:
             if paciente_actual[1] == paciente:
@@ -141,7 +140,12 @@ class MonticuloColaPrioridades:
                 flotar(self.heap, i)
                 hundir(self.heap, i)
                 return
-
+            
+    def reconstruir_monticulo(self):
+        pacientes = [(prioridad, paciente) for prioridad, paciente in self.heap.vector[:self.heap.tamano]]
+        self.heap.vector = pacientes
+        monticulizar(self.heap)
+        
 def pos_jerarquica(G, root=None, width=1., vert_gap=0.2, vert_loc=0, xcentro=0.5):
     pos = {}
 
