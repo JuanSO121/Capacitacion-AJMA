@@ -8,7 +8,6 @@ from streamlit_lottie import st_lottie
 import pandas as pd
 from PIL import Image
 
-
 # Función para cargar animaciones Lottie
 def cargar_lottieurl(url):
     r = requests.get(url)       
