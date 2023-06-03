@@ -1,6 +1,6 @@
-from Training_Grafos_Interfaz.Menu_Grafo import menu_Grafos
-from Training_Monticulos.menu_Monticulos import menu_Monticulos
-from TrainingArboles.menu_Arbol import menu_Arboles
+from Grafos.Menu_Grafo import menu_Grafos
+from Monticulos.menu_Monticulos import menu_Monticulos
+from Arboles.menu_Arbol import menu_Arboles
 
 import streamlit as st 
 import requests
