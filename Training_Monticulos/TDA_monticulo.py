@@ -8,7 +8,7 @@ class Heap(object):
         self.vector = [None] * tamano
 
 def agregar(heap, dato):
-    heap.vector[heap.heap] = dato
+    heap.vector[heap.tamano] = dato
     flotar(heap, heap.tamano)
     heap.tamano += 1
 
