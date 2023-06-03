@@ -6,8 +6,8 @@ from TrainingArboles.TDA_Arbol import Arbol, Nodo, dfs_preorden, mostrar_arbol, 
 arbol = Arbol(Nodo("raiz"))
 
 def practica():
-    st.title("Programa de Árboles")
-    st.write("Este programa te permitirá conocer las partes de un árbol.")
+    st.title("Seccion de Árboles")
+    st.write("Este programa te permitirá conocer las partes de un árbol binario.")
     
     opciones = [
         "Agregar nodo",
@@ -37,7 +37,8 @@ def practica():
                     st.write("El nodo padre no existe")
             
             st.success(f"Nodo '{valor}' agregado con éxito al padre '{padre_valor}' .")
-                
+            fig = mostrar_arbol_con_networkx(arbol)
+            st.pyplot(fig)    
     elif opcion == "Eliminar nodo":
         with st.form(key="eliminar_nodo_form"):
             valor = st.text_input("Ingrese el valor del nodo a eliminar:", key="eliminar_valor")
@@ -48,6 +49,8 @@ def practica():
             if nodo is not None:
                 arbol.eliminar_nodo(nodo)
                 st.success(f"Nodo '{valor}' eliminado con éxito.")
+                fig = mostrar_arbol_con_networkx(arbol)
+                st.pyplot(fig)
             else:
                 st.write("El nodo no existe")
                 

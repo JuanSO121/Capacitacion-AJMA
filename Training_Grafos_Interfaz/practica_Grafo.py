@@ -102,11 +102,15 @@ def practica():
         mostrar_grafo()
     elif opcion == "2":
         agregar_nodo()
+        mostrar_grafo()
     elif opcion == "3":
         agregar_arista()
+        mostrar_grafo()
     elif opcion == "4":
         cambiar_peso_arista()
+        mostrar_grafo()
     elif opcion == "5":
         obtener_distancia()
+        mostrar_grafo()
     elif opcion == "6":
         st.write("¡Hasta luego!")

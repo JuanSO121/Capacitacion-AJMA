@@ -9,7 +9,7 @@ from Training_Monticulos.TDA_monticulo import MonticuloColaPrioridades, heap_vac
 import streamlit as st
 
 def mostrar_monticulo_explicacion():
-    st.title("Montículo - Cola de Prioridades")
+    st.title("Montículo - Cola de Prioridades aplicados en el sector de la salud")
 
     cola_prioridades = MonticuloColaPrioridades()
 
@@ -42,7 +42,7 @@ def mostrar_monticulo_explicacion():
 
     pos = pos_jerarquica(G)
     nx.draw(G, pos, with_labels=True, node_size=800, node_color='lightblue', edge_color='gray', arrows=True)
-    plt.title("Montículo - Cola de Prioridades")
+    plt.title("Montículo - Cola de Prioridades en el sector de la salud")
     plt.axis('off')
     st.pyplot()
 
@@ -92,7 +92,7 @@ def explicacion():
     ]
 
     # Mostramos el menú
-    st.write("\n--Bienvenido al training de Montículos--")
+    st.write("\n--Bienvenido a conocer mas sobre Montículos--")
     st.write("\nEn este capítulo tendrás una breve explicación en la cual aprenderás lo necesario sobre los montículos.")
     st.write("\n")
     

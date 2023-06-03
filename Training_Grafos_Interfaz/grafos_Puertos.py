@@ -202,19 +202,25 @@ def puerto():
         mostrar_grafo()
     elif opcion == "2":
         agregar_puerto()
+        mostrar_grafo()
     elif opcion == "3":
         agregar_ruta()
+        mostrar_grafo()
     elif opcion == "4":
         calcular_distancia()
     elif opcion == "5":
         calcular_ruta_optima()
     elif opcion == "6":
         cambiar_puerto()
+        mostrar_grafo()
     elif opcion == "7":
         cambiar_ruta()
+        mostrar_grafo()
     elif opcion == "8":
         eliminar_puerto()
+        mostrar_grafo()
     elif opcion == "9":
         eliminar_ruta()
+        mostrar_grafo()
     else:
         st.warning("Opción inválida. Ingrese una opción válida.")

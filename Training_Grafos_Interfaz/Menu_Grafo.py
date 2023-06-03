@@ -21,7 +21,7 @@ lottie_study = cargar_lottieurl("https://assets4.lottiefiles.com/packages/lf20_p
 lottie_conexion = cargar_lottieurl("https://assets10.lottiefiles.com/packages/lf20_Fdv4mj.json")
 saludo = cargar_lottieurl("https://assets2.lottiefiles.com/packages/lf20_khtt8ejx.json")
 
-imagen_video = Image.open("src/eevee.jpg")
+imagen_video = Image.open("src/Ajma.jpeg")
 
 def menu_Grafos():
     # Diseño de la página
@@ -29,14 +29,14 @@ def menu_Grafos():
         columna_izq,columna_der = st.columns(2)
 
         with columna_izq:
-            st.header("Motivación y Persistencia: Avanza hacia el Dominio de los Grafos, Montículos y Árboles")
+            st.header("AJMA: Soluciones operativas y de logistica")
             # """ --> Salto de linea
         with columna_der:
             st_lottie(lottie_conexion, height=230, key="coding0")
             
     st.markdown("---")
 
-    st.title("Capaciotacion de Grafos")
+    st.title("Capacitación de Grafos")
     
     st.write('"Los grafos son como mapas que nos permiten explorar y comprender las interconexiones y relaciones complejas que existen en el mundo."')
     opciones = ["Inicio","Explicacion","Practica","Practica Puertos"]
@@ -46,11 +46,9 @@ def menu_Grafos():
     
     if seleccion =="Explicacion":
         with st.container():
-            st.subheader("Bienvenido al Training")
+            st.subheader("Bienvenido. Conoce mas sobre Grafos")
             st.title("Introduccion sobre Grafos")
             explicacion()
-            st.write("lo que sea")
-            st.write("[Mas informacion>](https://www.youtube.com/watch?v=zeS2FlxF_0s)")
     elif seleccion =="Practica":
         with st.container():
             

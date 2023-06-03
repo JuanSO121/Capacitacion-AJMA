@@ -52,7 +52,7 @@ def visualizar_arbol(arbol):
 arbol = ArbolRojoNegro()
 
 def arbolRN():
-    st.title("Programa de Árboles")
+    st.title("Capacitación de Árboles")
     st.write("Este programa te permitirá conocer las partes de un árbol.")
 
     opciones = [

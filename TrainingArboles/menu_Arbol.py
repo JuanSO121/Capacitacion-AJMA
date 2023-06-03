@@ -17,18 +17,18 @@ def catgar_lottieurl(url):
     return r.json()
 
 lottie_codigo = catgar_lottieurl("https://assets9.lottiefiles.com/packages/lf20_3rwasyjy.json")
-imagen_video = Image.open("src/eevee.jpg")
+imagen_video = Image.open("src/Ajma.jpeg")
 
 def menu_Arboles():
     
-    st.title("Training Arboles")
+    st.title("Capacitación de Arboles")
     opciones = ["Inicio","Explicacion","Practica","Practica Codificacion Morse"]
     seleccion = st.selectbox("Menu",opciones)
     st.write("---")
     
     if seleccion =="Explicacion":
         with st.container():
-            st.subheader("Bienvenido al Training")
+            st.subheader("Bienvenido, aqui podras aprender sobre arboles y sus posibles aplicaciones")
             st.title("Introduccion sobre Arboles")
             explicacion()
             

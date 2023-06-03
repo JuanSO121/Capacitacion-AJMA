@@ -1,5 +1,5 @@
 class Nodo:
-    def _init_(self, dato):
+    def __init__(self, dato):
         self.dato = dato
         self.color = "ROJO"  # Por defecto, el nuevo nodo se coloca como rojo
         self.padre = None
@@ -7,7 +7,7 @@ class Nodo:
         self.derecho = None
 
 class ArbolRojoNegro:
-    def _init_(self):
+    def __init__(self):
         self.raiz = None
 
     def insertar(self, dato):

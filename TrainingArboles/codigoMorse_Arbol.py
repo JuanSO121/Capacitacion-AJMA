@@ -99,4 +99,4 @@ def morse():
                 st.success('Frase decodificada al español:')
                 st.write(decodificado)
         else:
-            st.warning('Ingrese una frase para procesar.')
+            st.warning('Ingrese la frase que desees procesar.')
