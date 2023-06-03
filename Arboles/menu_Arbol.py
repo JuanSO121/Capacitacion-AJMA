@@ -1,6 +1,6 @@
 from Arboles.explicacion_Arbol import explicacion
 from Arboles.practica_Arbol import practica
-
+from Arboles.menu_morse import morse
 # streamlit run app.py
 import streamlit as st 
 import requests
@@ -42,4 +42,4 @@ def menu_Arboles():
         with st.container():
             
             st.title("Aplicando Arboles en Codificacion Morse")
-            # morse()
+            morse()

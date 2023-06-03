@@ -2,7 +2,7 @@ import streamlit as st
 import networkx as nx
 import matplotlib.pyplot as plt
 from Arboles.TDA_Arbol import Arbol, Nodo, dfs_preorden, mostrar_arbol, mostrar_arbol_con_networkx
-
+from Arboles.arbol_RojoNegro import arbolRN
 arbol = Arbol(Nodo("raiz"))
 
 def practica():
@@ -15,6 +15,7 @@ def practica():
         "Buscar nodo",
         "Visualizar árbol",
         "Mostrar partes del árbol",
+        "Arboles Rojo-Negro"
     ]
     st.sidebar.title("Practica Arboles")
     
@@ -72,3 +73,6 @@ def practica():
         
     elif opcion == "Mostrar partes del árbol":
         mostrar_arbol(arbol)
+    
+    elif opcion == "Arboles Rojo-Negro":
+        arbolRN()
